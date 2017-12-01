@@ -10,15 +10,6 @@ function validate() {
         }
     }
     
-     var emailPattern =/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-     var email = document.getElementById("email").value;
-     if (!emailPattern.test(email)){
-        document.getElementById("email").value = "Enter a valid email address";
-        document.getElementById("email").classList.add('error-message');
-        return false;
-        
-    }
-    
     var pswPattern =/^(?=.*[A-Zaz])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
      var psw = document.getElementById("psw").value;
      if (!pswPattern.test(psw)){

@@ -28,6 +28,12 @@ label {
     margin-bottom: 0.5em;
 }
 
+#login, #signup{
+    background-color: #005580;
+    color: #ffffff;
+    text-decoration: none;
+}
+
 .error {
     background-color: #e2262c;
 }

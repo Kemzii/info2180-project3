@@ -4,7 +4,7 @@
   
 <head> 
 <title>CheapoMail</title> 
-<script type="text/javascript" src="scripts/p2.js"></script>
+<script type="text/javascript" src="scripts/main.js"></script>
 <link rel="stylesheet" type="text/css" href="styles/main.css" />
 </head> 
 <body> 
@@ -19,14 +19,17 @@
     <br>
     <label for="psw">Password</label>
     <input type="password" id="psw" name="psw"/>
-
+    
+    <label for="login"></label>
     <input type="submit" value="Login" id="login"/>
-    
-    <p> New User? </p>
-    <input type="submit" value="Sign Up" id="signup"/>
-    
     </fieldset>
   </form>
+  
+  <p> New User? </p>
+  <form action="newUser.html">
+    <input type="submit" value="Sign Up" id="signup" />
+  </form>
+    
 </div>
 
 </body> 
