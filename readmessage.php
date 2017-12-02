@@ -17,7 +17,7 @@
         $reader = $_GET['readerid'];
         $msg_id = $_GET['id'];
         
-       	$sql = "INSERT INTO Message_read (message_id, reader_id, date) VALUES ('$msg_id', '$reader' , CURDATE())";
+       	$sql = "INSERT INTO Messages_read (message_id, reader_id, date) VALUES ('$msg_id', '$reader' , CURDATE())";
 			// use exec() because no results are returned
 		$conn->exec($sql); 
 		

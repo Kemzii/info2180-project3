@@ -46,7 +46,7 @@ if(isset($_POST["submit"]))
 		if(empty($errorMessage)) 
 		{
 		    echo "Preparing for insertion";
-			$sql = "INSERT INTO User (firstname, lastname, username, password) VALUES ('$varFN', '$varLN' , '$varUN' ,  '$hash')";
+			$sql = "INSERT INTO Users (firstname, lastname, username, password) VALUES ('$varFN', '$varLN' , '$varUN' ,  '$hash')";
 			// use exec() because no results are returned
 			
 			$conn->exec($sql);

@@ -45,7 +45,7 @@
               
               $user  = $_SESSION["username"] ;
               
-              $stmt = $conn->query("SELECT * FROM User WHERE username = '$user'"); 
+              $stmt = $conn->query("SELECT * FROM Users WHERE username = '$user'"); 
               $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
               foreach ($results as $row) {
                   
@@ -60,14 +60,14 @@
               
               
 	        
-	        $stmt1 = $conn->query("SELECT * FROM Message WHERE recipient_id = '$user_id' ORDER BY date_sent desc LIMIT 10 ");
+	        $stmt1 = $conn->query("SELECT * FROM Messages WHERE recipient_id = '$user_id' ORDER BY date_sent desc LIMIT 10 ");
 			$results2 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 			
-		    $stmt6 = $conn->query("SELECT * FROM Message WHERE recipient_id = '$user_id' ORDER BY date_sent desc LIMIT 1");
+		    $stmt6 = $conn->query("SELECT * FROM Messages WHERE recipient_id = '$user_id' ORDER BY date_sent desc LIMIT 1");
             $results6 = $stmt6->fetchAll(PDO::FETCH_ASSOC);
             foreach ($results6 as $row){
                 $msgid = $row['id'];
-                $stmt5 =  $conn->query("SELECT * FROM Message_read where message_id = '$msgid'");
+                $stmt5 =  $conn->query("SELECT * FROM Messages_read where message_id = '$msgid'");
                 $results5 = $stmt5->fetch(PDO::FETCH_ASSOC);
                 if ($results5 == ''){
                     echo 
@@ -79,7 +79,7 @@
             }
 	        foreach ($results2 as $row) {
 	            $recipient=$row['user_id'];
-	            $stmt4 = $conn->query("SELECT * FROM User WHERE id = '$recipient'");
+	            $stmt4 = $conn->query("SELECT * FROM Users WHERE id = '$recipient'");
           
                  $results4 = $stmt4->fetchAll(PDO::FETCH_ASSOC);
                  foreach ($results4 as $row4) {
@@ -89,7 +89,7 @@
              
 	             $msgid = $row['id'];
 	             $readerid = $row['user_id'];
-	            $stmt5 =  $conn->query("SELECT * FROM Message_read where message_id = '$msgid'");
+	            $stmt5 =  $conn->query("SELECT * FROM Messages_read where message_id = '$msgid'");
                  $results5 = $stmt5->fetch(PDO::FETCH_ASSOC);
                  if($results5 == ''){
                         // echo "THSI SI " . $results5;

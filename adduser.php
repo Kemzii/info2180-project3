@@ -25,7 +25,7 @@ if(isset($_POST["login"]))
         if($type == 'admin'){
           
       
-             $stmt = $conn->query("SELECT * FROM User WHERE id = 1 ");   
+             $stmt = $conn->query("SELECT * FROM Users WHERE id = 1 ");   
              
 			
 			           $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -64,7 +64,7 @@ if(isset($_POST["login"]))
               
         }
         else{
-              $stmt = $conn->query("SELECT * FROM User ");   
+              $stmt = $conn->query("SELECT * FROM Users ");   
              //echo "In else" . "\n";
 			          $userfound =false;
 			          $results = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -21,7 +21,7 @@ if(isset($_POST["submit"]))
 		$message = $_POST['message'];
 	
         //get recipient id
-            $stmt = $conn->query("SELECT * FROM User WHERE username = '$recipient'");
+            $stmt = $conn->query("SELECT * FROM Users WHERE username = '$recipient'");
           
              $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
               foreach ($results as $row) {
@@ -36,7 +36,7 @@ if(isset($_POST["submit"]))
               
               $user  = $_SESSION["username"] ;
               
-              $stmt = $conn->query("SELECT * FROM User WHERE username = '$user'"); 
+              $stmt = $conn->query("SELECT * FROM Users WHERE username = '$user'"); 
               $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
               foreach ($results as $row) {
                   
@@ -45,7 +45,7 @@ if(isset($_POST["submit"]))
                    }
               }
 		
-			$sql = "INSERT INTO Message (recipient_id, user_id, subject, body,date_sent) VALUES ('$recipient_id', '$user_id' , '$subject' ,  '$message', CURDATE())";
+			$sql = "INSERT INTO Messages (recipient_id, user_id, subject, body,date_sent) VALUES ('$recipient_id', '$user_id' , '$subject' ,  '$message', CURDATE())";
 			// use exec() because no results are returned
 			
 			$conn->exec($sql);
