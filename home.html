@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Home</title>
+    	<link rel="stylesheet" type="text/css" href="userlogin.css"/>
+	<script src="userform.js" type="text/javascript"> </script>
+
+</head>
+
+<body>
+    
+<ul>
+  <li><a class="active" href="#home"><strong>CheapoMail</strong></a></li>
+  <li><a class="active" href="#home">Home</a></li>
+   <li><a href="logout.php">Logout</a></li>
+</ul>
+    <a id="compose" href="composemail.html">Compose Mail Here</a>
+    
+    
+    <h2>Latest Email </h2>
+    
+   <?php
+        $host = getenv('IP');
+        $username = getenv('C9_USER');
+        $password = '';
+        $dbname = 'CheapoMail';
+
+    	try {
+    		//set up connection
+    		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+   
+            echo '<table >
+			<tr>
+			   <th>Date</th>
+			<th >From </th>
+	        <th>Subject</th>
+	       
+	        <th>Message</th>
+	       </tr>';
+	        
+	        session_start();
+              
+              $user  = $_SESSION["username"] ;
+              
+              $stmt = $conn->query("SELECT * FROM User WHERE username = '$user'"); 
+              $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+              foreach ($results as $row) {
+                  
+                   if($row['username'] == $user){
+                       $user_id = $row[id];
+                      
+                      
+                   }
+              }
+              
+           
+              
+              
+	        
+	        $stmt1 = $conn->query("SELECT * FROM Message WHERE recipient_id = '$user_id' ORDER BY date_sent desc LIMIT 10 ");
+			$results2 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+			
+		    $stmt6 = $conn->query("SELECT * FROM Message WHERE recipient_id = '$user_id' ORDER BY date_sent desc LIMIT 1");
+            $results6 = $stmt6->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($results6 as $row){
+                $msgid = $row['id'];
+                $stmt5 =  $conn->query("SELECT * FROM Message_read where message_id = '$msgid'");
+                $results5 = $stmt5->fetch(PDO::FETCH_ASSOC);
+                if ($results5 == ''){
+                    echo 
+                    '<script type "text/javascript">
+                    alert("NEW MESSAGE");
+                    </script>';
+                }
+                
+            }
+	        foreach ($results2 as $row) {
+	            $recipient=$row['user_id'];
+	            $stmt4 = $conn->query("SELECT * FROM User WHERE id = '$recipient'");
+          
+                 $results4 = $stmt4->fetchAll(PDO::FETCH_ASSOC);
+                 foreach ($results4 as $row4) {
+                 
+                       $sender = $row4[firstname] . ' ' . $row4[lastname] ;
+                 }
+             
+	             $msgid = $row['id'];
+	             $readerid = $row['user_id'];
+	            $stmt5 =  $conn->query("SELECT * FROM Message_read where message_id = '$msgid'");
+                 $results5 = $stmt5->fetch(PDO::FETCH_ASSOC);
+                 if($results5 == ''){
+                        // echo "THSI SI " . $results5;
+    	            echo '
+        	         <tr >     
+        	        <td> <strong>'. $row['date_sent'] .' </strong></td>
+               	    <td> <strong>'. $sender  . ' </strong></td>
+               	    <td onclick = "myAjax()"> <a href="readmessage.php?clicked=true&id='.$msgid.'&readerid='.$readerid.'"> <strong>'. $row['subject'] .' </strong></a></td>
+                    <td> <strong>'. $row['body'] .'</strong></td>    
+                  
+            	    </tr> ';
+            	}else{
+            	     echo '
+        	         <tr >     
+        	        <td>'. $row['date_sent'] .' </td>
+               	    <td> '. $sender  . ' </td>
+               	    <td onclick = "myAjax()"> <a href="readmessage.php?clicked=true&id='.$msgid.'&readerid='.$readerid.'">'. $row['subject'] .' </a></td>
+                    <td> '. $row['body'] .'</td>  </tr> ';    
+            	}
+        	    
+	     
+		       }}
+			catch(PDOException $e)
+		{	
+			echo "Error";
+			echo $sql . "<br>" . $e->getMessage();
+   }
+   ?>
+   </br>
+   </br>
+   </br>
+</body>
+</html>
