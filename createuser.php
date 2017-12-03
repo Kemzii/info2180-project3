@@ -45,12 +45,12 @@ if(isset($_POST["submit"]))
         echo $hash; 
 		if(empty($errorMessage)) 
 		{
-		    echo "Preparing for insertion";
+		    
 			$sql = "INSERT INTO Users (firstname, lastname, username, password) VALUES ('$varFN', '$varLN' , '$varUN' ,  '$hash')";
 			// use exec() because no results are returned
 			
 			$conn->exec($sql);
-            echo "Succesfully inserted";
+            echo "<script>window.location = 'userlogin.html'</script>";
 		}
 		else
 		{

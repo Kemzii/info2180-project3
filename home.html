@@ -12,8 +12,7 @@
     
 <ul>
   <li><a class="active" href="#home"><strong>CheapoMail</strong></a></li>
-  <li><a class="active" href="#home">Home</a></li>
-   <li><a href="logout.php">Logout</a></li>
+   <li id="logout"><a href="logout.php">Logout</a></li>
 </ul>
     <a id="compose" href="composemail.html">Compose Mail Here</a>
     
@@ -92,7 +91,7 @@
 	            $stmt5 =  $conn->query("SELECT * FROM Messages_read where message_id = '$msgid'");
                  $results5 = $stmt5->fetch(PDO::FETCH_ASSOC);
                  if($results5 == ''){
-                        // echo "THSI SI " . $results5;
+                        // echo "This is " . $results5;
     	            echo '
         	         <tr >     
         	        <td> <strong>'. $row['date_sent'] .' </strong></td>

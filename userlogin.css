@@ -1,10 +1,16 @@
+#home{
+    background-image: url("bg.jpeg");
+    text-align: left;
+    color: #62f442;
+}
 form {
     border: 3px solid #f1f1f1;
+    font-weight: bold;
   
 }
 h2{
     text-align: center;
-    color:blue;
+    font-family: Algerian;
 }
 
 input[type=text], input[type=password] {
@@ -37,15 +43,6 @@ button {
     background-color: #f44336;
 }
 
-.imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
-}
-
-img.avatar {
-    width: 20%;
-    border-radius: 50%;
-}
 
 .container {
     padding: 16px;
@@ -74,7 +71,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: blue;
 }
 
 li {
@@ -112,4 +109,7 @@ li a:hover {
     font-weight: bold;
     color: black;
     font-size: 15px;
+}
+#logout {
+    float: right;
 }

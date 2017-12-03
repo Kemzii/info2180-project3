@@ -49,7 +49,8 @@ if(isset($_POST["submit"]))
 			// use exec() because no results are returned
 			
 			$conn->exec($sql);
-            echo "Message was Successful";
+            echo "<script type='text/javascript'>alert('Message Sent!');</script>";
+            echo "<script>window.location = 'home.html'</script>";
 		
       //check for encyption
 		
