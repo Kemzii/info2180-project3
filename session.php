@@ -6,7 +6,7 @@
         
         $_SESSION["username"] = $username;
         echo "Session variables are set for " . $_SESSION["username"] ;
-       // include("homepage.html");
+       
     }
     
 ?>
