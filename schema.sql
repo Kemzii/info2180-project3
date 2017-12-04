@@ -11,8 +11,11 @@ username varchar(255),
 password varchar(255)
 );
 
-INSERT INTO Users(id, firstname, lastname, username, password) VALUES
-(1, 'Some', 'One', 'Legendary', '6437db2022d0b8c92fe6e87731d894cc');
+
+INSERT INTO Users(id, firstname, lastname, username, password) VALUES (1, 'John', 'McAadams', 'admin', 	MD5('password123'));
+
+/*INSERT INTO Users(id, firstname, lastname, username, password) VALUES
+(2, 'Some', 'One', 'Legendary', '6437db2022d0b8c92fe6e87731d894cc');*/
 
 CREATE TABLE Messages (
 id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, 
